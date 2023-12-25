@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+class Employee{
+    int id;
+    string name;
+public:
+    void setEmp(int id2,string name2){
+        id = id2;
+        name = name2;
+    }
+
+    void setId(int id2){
+        id = id2;
+    }
+
+     void setName(int name2){
+        name = name;
+    }
+
+    int getid(){
+        return id;
+    }
+
+    string getname(){
+        return name;
+    }
+
+
+};
+void bubble(Employee arr2[],int Size2);
+int main()
+{
+    int Size;
+    cout<<"enter the size"<<endl;
+    cin>>Size;
+    cout<<"enter the elements of array"<<endl;
+    Employee arr[Size];
+    for(int i=0 ; i<Size ; i++){
+        cout<<"enter the id of the emplyee number "<<i+1<<endl;
+        int id;
+        cin>>id;
+        cout<<"enter the name of the emplyee number "<<i+1<<endl;
+        string name;
+        cin>>name;
+        arr[i].setEmp(id,name);
+    }
+    bubble(arr,Size);
+    return 0;
+}
+
+
+void bubble(Employee arr2[],int Size2){
+    //for sorting ids
+    for(int i=0 ; i<Size2 ; i++){
+       for(int j=0 ; j<Size2-i ; j++){
+        if(arr2[j].getid() > arr2[j+1].getid() && j!=Size2-1){
+            int temp;
+            swap(arr2[j],arr2[j+1]);
+        }
+      }
+    }
+
+    // for sorting strings for equally ids
+     for(int i=0 ; i<Size2 ; i++){
+       for(int j=0 ; j<Size2-i ; j++){
+        if(arr2[j].getid() == arr2[j+1].getid()){
+        if(arr2[j].getname() > arr2[j+1].getname() && j!=Size2-1){
+            int temp;
+            swap(arr2[j],arr2[j+1]);
+        }
+      }
+    }
+    }
+
+    for(int i=0 ; i<Size2 ; i++){
+        cout<<"---------------------------------------"<<endl;
+        cout<<arr2[i].getid()<<endl;
+        cout<<arr2[i].getname()<<endl;
+    }
+}
