@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+void merge(int arr[],int left,int right,int middle);
+void mergeSort(int arr[],int left,int right);
+int main()
+{
+    int Size;
+    cout<<"enter the size"<<endl;
+    cin>>Size;
+    cout<<"enter the elements of array"<<endl;
+    int arr[Size];
+    for(int i=0 ; i<Size ; i++){
+        cin>>arr[i];
+    }
+    mergeSort(arr,0,Size-1);
+    cout<<"the sorted array is : "<<endl;
+    for(int i=0 ; i<Size ; i++){
+        cout<<arr[i]<<endl;
+    }
+    return 0;
+}
+void merge(int arr[],int left,int right,int middle){
+    //the size of sub-left array
+    int s1 = middle-left+1;
+    //the size of sub-right array
+    int s2 = right-middle;
+    //make dynamic sub-left array
+    int *LEFT = new int[s1];
+    //make dynamic sub-right array
+    int *RIGHT = new int[s2];
+    //store the sub-left array in the dynamic array
+    for (int i=0 ; i<s1 ; i++){
+        LEFT[i] = arr[left+i];
+    }
+    //store the sub-right array in the dynamic array
+    for (int i=0 ; i<s2 ; i++){
+        RIGHT[i] = arr[middle+i+1];
+    }
+    //         the process of compare
+    // i variable to move forward if the left wins | j variable to move forward if the right wins
+    //k variable to store the variables of the array
+    int i=0,j=0,k=left;
+    while(i<s1 && j<s2){
+        if(LEFT[i] <= RIGHT[j]){
+            arr[k] = LEFT[i];
+            i++;
+        }else if(LEFT[i] > RIGHT[j]){
+            arr[k] = RIGHT[j];
+            j++;
+        }
+        k++;
+    }
+    //store the last variables if found in left
+    while(i < s1){
+        arr[k] = LEFT[i];
+        k++;
+        i++;
+    }
+
+    //store the last variables if found in right
+    while(j < s2){
+        arr[k] = RIGHT[j];
+        k++;
+        j++;
+    }
+
+}
+
+
+void mergeSort(int arr[],int left,int right){
+    if(left < right){
+        int middle = (right+left) /2;
+        mergeSort(arr,left,middle);
+        mergeSort(arr,middle+1,right);
+
+        merge(arr,left,right,middle);
+    }
+}
+

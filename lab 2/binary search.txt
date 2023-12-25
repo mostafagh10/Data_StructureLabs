@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+bool binary(int arr[],int searchitem,int left,int right);
+int main()
+{
+    int Size;
+    cout<<"enter the size"<<endl;
+    cin>>Size;
+    cout<<"enter the elements of array"<<endl;
+    int arr[Size];
+    for(int i=0 ; i<Size ; i++){
+        cin>>arr[i];
+    }
+    cout<<"enter the number you want to search : "<<endl;
+    int searchitem;
+    cin>>searchitem;
+    bool x = binary(arr,searchitem,0,Size-1);
+    if(x == true){
+        cout<<"fount"<<endl;
+    }else{
+        cout<<"not fount"<<endl;
+    }
+    return 0;
+}
+
+bool binary(int arr[],int searchitem,int left,int right){
+    int mid = (left+right) / 2;
+    if(arr[mid] == searchitem){
+        return true;
+    }else if(searchitem > arr[right]){
+        return false;
+    }
+    else if(searchitem < arr[left]){
+        return false;
+    }
+    else if(searchitem < arr[mid]){
+        return binary(arr,searchitem,left,mid-1);
+    }else if(searchitem > arr[mid]){
+        return binary(arr,searchitem,mid+1,right);
+    }
+    return false;
+}

@@ -1,0 +1,126 @@
+#include <iostream>
+using namespace std;
+class Employee{
+    int id;
+    string name;
+    int salary;
+public:
+    void setId(int id2){
+        id = id2;
+    }
+
+     void setName(string name2){
+        name = name;
+    }
+
+     void setSalary(int salary2){
+        salary = salary2;
+    }
+
+    int getid(){
+        return id;
+    }
+
+    string getname(){
+        return name;
+    }
+
+    int getsalary(){
+        return salary;
+    }
+
+
+};
+void searchByName(Employee arr[],int Size2,string searchitem);
+void searchById(Employee arr[],int Size2,int searchitem);
+void searchBySalary(Employee arr[],int Size2,int searchitem);
+int main()
+{
+    int Size;
+    cout<<"enter the size"<<endl;
+    cin>>Size;
+    cout<<"enter the elements of array"<<endl;
+    Employee arr[Size];
+    for(int i=0 ; i<Size ; i++){
+        cout<<"enter the id of the emplyee number "<<i+1<<endl;
+        int id;
+        cin>>id;
+        arr[i].setId(id);
+        cout<<"enter the name of the emplyee number "<<i+1<<endl;
+        string name;
+        cin>>name;
+        arr[i].setName(name);
+         cout<<"enter the name of the emplyee salary "<<i+1<<endl;
+        int salary;
+        cin>>salary;
+        arr[i].setSalary(salary);
+    }
+    cout<<"enter the item you want to search about : "<<endl;
+    cout<<"id           name         salary"<<endl;
+    string choice;
+    cin>>choice;
+    if(choice == "name"){
+    string searchname;
+    cout<<"enter the name you want to search: "<<endl;
+    cin>>searchname;
+    searchByName(arr,Size,searchname);
+    }
+    else if(choice == "id"){
+    int searchid;
+    cout<<"enter the id you want to search: "<<endl;
+    cin>>searchid;
+    searchById(arr,Size,searchid);
+    }
+     else if(choice == "salary"){
+    int searchsalary;
+    cout<<"enter the salary you want to search: "<<endl;
+    cin>>searchsalary;
+    searchBySalary(arr,Size,searchsalary);
+    }
+    return 0;
+}
+
+
+void searchByName(Employee arr[],int Size2,string searchitem){
+    int flag=0;
+    for(int i=0 ; i<Size2 ; i++){
+        if(arr[i].getname() == searchitem){
+            cout<<"the name found in index number : "<<i<<endl;
+        }else{
+            flag++;
+        }
+    }
+    if(flag == Size2){
+        cout<<"the item not found"<<endl;
+    }
+}
+
+
+void searchById(Employee arr[],int Size2,int searchitem){
+    int flag=0;
+    for(int i=0 ; i<Size2 ; i++){
+        if(arr[i].getid() == searchitem){
+            cout<<"the id found in index number : "<<i<<endl;
+        }else{
+            flag++;
+        }
+    }
+    if(flag == Size2){
+        cout<<"the item not found"<<endl;
+    }
+}
+
+
+void searchBySalary(Employee arr[],int Size2,int searchitem){
+    int flag=0;
+    for(int i=0 ; i<Size2 ; i++){
+        if(arr[i].getsalary() == searchitem){
+            cout<<"the salary found in index number : "<<i<<endl;
+        }else{
+            flag++;
+        }
+    }
+    if(flag == Size2){
+        cout<<"the item not found"<<endl;
+    }
+}
